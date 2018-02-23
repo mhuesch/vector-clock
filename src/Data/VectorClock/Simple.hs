@@ -222,6 +222,7 @@ max = combine maxEntry
 relation :: (Ord a, Ord b) => VectorClock a b -> VectorClock a b -> Relation
 relation vc1 vc2 = go (clock vc1) (clock vc2)
   where
+    go [] [] = Concurrent
     go xys@((x, y) : xyt) xys'@((x', y') : xyt')
         | x == x' =
             if y == y'
